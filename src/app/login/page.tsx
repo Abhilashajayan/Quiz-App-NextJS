@@ -4,12 +4,12 @@ import { useState } from "react"
 
 
 const page = () => {
-const [name, setName] = useState<string>('');
 const [email, setEmail] = useState<string>('');
+const [password, setPassword] = useState<string>('');
 
 const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=> {
     e.preventDefault();
-    console.log("hello");
+    console.log(password+"hello"+email);
 }
   return (
     <div className="flex justify-center  items-center h-screen">
@@ -24,6 +24,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=> {
             type="text"
             className="bg-gray-200 px-3 py-2 w-full rounded"
             id="username"
+            onChange={(e)=>setEmail(e.target.value)}
             name="username"
             placeholder="Enter your username"
           />
@@ -36,6 +37,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=> {
             type="password"
             className="bg-gray-200 px-3 py-2 w-full rounded"
             id="password"
+            onChange={(e)=>setPassword(e.target.value)}
             name="password"
             placeholder="Enter your password"
           />

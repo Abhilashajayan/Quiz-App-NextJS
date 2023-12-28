@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import SkeletonLoader from "./Skeltonloading";
 
 interface Question {
   id: string;
@@ -34,6 +35,7 @@ const page = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [selectedValues, setSelectedValues] = useState<{ [questionId: string]: string }>({});
   const [correctAns, setCorrectAns] = useState<Question[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -65,8 +67,10 @@ const page = () => {
           };
         });
         setQuestions(extractedQuestions);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching questions:', error);
+        setLoading(false);
       }
     };
 
@@ -95,12 +99,15 @@ const page = () => {
     console.log(`Correct Answers: ${correctCount}`);
   };
   
-  
+
   
   return (
     <>
+    
     <h2 className="text-2xl font-bold mb-4 text-center text-blue-600">Quiz Questions</h2>
-    <div className="flex justify-center">
+    {loading ? (
+        <SkeletonLoader />
+      ) : <div className="flex justify-center">
       <ul>
         {questions.map((question, index) => (
           <li key={question.id} className="mb-6">
@@ -132,7 +139,7 @@ const page = () => {
           Submit
         </button>
       </ul>
-    </div>
+    </div>}
     <style jsx>{`
         .selected {
           background-color: #a0aec0;

@@ -3,10 +3,10 @@ import Skeleton from 'react-loading-skeleton';
 
 const SkeletonLoader: React.FC = () => {
   return (
-    <div className='h-screen h-full w-screen'>
-      <Skeleton className='w-screen h-full  ' />
-      <h1 className='flex  justify-center text-5xl'>Loading...</h1>
-      <Skeleton className='w-screen h-screen' />
+    <div className='h-screen flex flex-col items-center justify-center'>
+      <Skeleton width='100%' height='50vh' />
+      <h1 className='text-5xl mt-4'>Loading...</h1>
+      <Skeleton width='100%' height='50vh' />
     </div>
   );
 };

@@ -102,7 +102,7 @@ const page = () => {
 
   
   return (
-    <div className="w-screen h-screen h-full" style={{ backgroundImage: 'url("https://img.freepik.com/free-vector/gradient-blur-pink-blue-abstract-background_53876-117324.jpg?size=626&ext=jpg&ga=GA1.2.1444344790.1683711147&semt=ais")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
+    <div className="w-screen h-full" style={{ backgroundImage: 'url("https://img.freepik.com/free-photo/pink-yellow-plain_53876-96060.jpg?size=626&ext=jpg&ga=GA1.1.1444344790.1683711147&semt=ais")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
     <h2 className="text-2xl font-bold mb-4 text-center text-blue-600">Quiz Questions</h2>
     {loading ? (
       <SkeletonLoader />

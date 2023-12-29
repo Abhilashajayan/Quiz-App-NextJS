@@ -102,50 +102,53 @@ const page = () => {
 
   
   return (
-    <>
-    
+    <div className="w-screen h-screen h-full" style={{ backgroundImage: 'url("https://img.freepik.com/free-vector/gradient-blur-pink-blue-abstract-background_53876-117324.jpg?size=626&ext=jpg&ga=GA1.2.1444344790.1683711147&semt=ais")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
     <h2 className="text-2xl font-bold mb-4 text-center text-blue-600">Quiz Questions</h2>
     {loading ? (
-        <SkeletonLoader />
-      ) : <div className="flex justify-center">
-      <ul>
-        {questions.map((question, index) => (
-          <li key={question.id} className="mb-6">
-            <p className="text-xl font-semibold mb-2">{index + 1}.{question.question}</p>
-            <ul className="p-2 list-disc">
-              {Object.entries(question.answers).map(([key, value]) => (
-                <li key={key}>
-                  <label className={`flex items-center ${selectedValues[question.id] === `Option ${key}` ? 'selected' : ''}`}>
-                    <input
-                      type="radio"
-                      name={`question_${index}`}
-                      className="mr-2"
-                      value={key}
-                      checked={selectedValues[question.id] === `Option ${key}`}
-                      onChange={() => handleSelect(question.id, index, key)}
-                    />
-                    <span className="text-blue-600">{value}</span>
-                  </label>
-                </li>
-              ))}
-            </ul>
-          </li>
-        ))}
-        <button
+      <SkeletonLoader />
+    ) : (
+      <div className="flex justify-center">
+        <ul>
+          {questions.map((question, index) => (
+            <li key={question.id} className="mb-6">
+              <p className="text-xl font-semibold mb-2">{index + 1}.{question.question}</p>
+              <ul className="p-2 list-disc">
+                {Object.entries(question.answers).map(([key, value]) => (
+                  <li key={key}>
+                    <label className={`flex items-center ${selectedValues[question.id] === `Option ${key}` ? 'selected' : ''}`}>
+                      <input
+                        type="radio"
+                        name={`question_${index}`}
+                        className="mr-2"
+                        value={key}
+                        checked={selectedValues[question.id] === `Option ${key}`}
+                        onChange={() => handleSelect(question.id, index, key)}
+                      />
+                      <span className="text-blue-600">{value}</span>
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+           <button
           onClick={handleSubmit}
           type="button"
-          className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 "
+          className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
         >
           Submit
         </button>
-      </ul>
-    </div>}
+        </ul>
+       
+      </div>
+      
+    )}
     <style jsx>{`
-        .selected {
-          background-color: #a0aec0;
-        }
-      `}</style>
-  </>
+      .selected {
+        background-color: #a0aec0;
+      }
+    `}</style>
+  </div>
   
   );
 };

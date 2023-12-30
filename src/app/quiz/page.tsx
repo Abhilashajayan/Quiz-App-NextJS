@@ -3,6 +3,7 @@
 import React, { useEffect, useState, FC } from "react";
 import axios from "axios";
 import SkeletonLoader from "./Skeltonloading";
+import { useSearchParams, useRouter } from 'next/navigation';
 
 
 interface Question {
@@ -12,6 +13,7 @@ interface Question {
   answer: string;
   correctAnswer: string;
   prevCorrectAns: string;
+  keyword:string;
   answers: {
     answer_a: string;
     answer_b: string;
@@ -29,18 +31,18 @@ interface Question {
     answer_f_correct: boolean;
   };
 }
-interface QuizProps {} 
 
-const Page: FC<QuizProps>  = () => {
+
+const Page = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [selectedValues, setSelectedValues] = useState<{ [questionId: string]: string }>({});
   const [correctAns, setCorrectAns] = useState<Question[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const keyword = searchParams.get('keyword');
 
-
- 
-  
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -99,7 +101,7 @@ const Page: FC<QuizProps>  = () => {
 
       return count;
     }, 0);
-
+    router.push(`quiz/result?count=${correctCount}&keyword=${keyword}`);
     console.log(`Correct Answers: ${correctCount}`);
   };
 

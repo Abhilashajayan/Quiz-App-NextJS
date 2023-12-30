@@ -6,11 +6,17 @@ import { useRouter } from 'next/navigation'
 
 const Home: React.FC = () => {
   const [name, setName] = useState<string>('');
+  const [error, setError] = useState<boolean>(false);
   const router = useRouter();
 
   const submit = () => {
-    const queryString = `?keyword=${name}`; 
-    router.push(`/quiz${queryString}`); 
+    if (name === undefined || name.trim() === '') {
+      setError(true);
+    } else {
+      setError(false);
+      const queryString = `?keyword=${name.trim()}`;  
+      router.push(`/quiz${queryString}`);
+    }
   };
 
 
@@ -20,6 +26,7 @@ const Home: React.FC = () => {
       <div className="flex flex-col items-center">
         <p className="mb-4 text-lg text-gray-700">Please enter your name to get started:</p>
         <input onChange={(e) => setName(e.target.value)} className="w-60 h-10 text-black rounded-lg border p-2 mb-4" type="text" placeholder="Enter Your Name" name="" id="" />
+        {error && <p className="text-red-500 mb-4">Please provide a proper name.</p>}
         <button onClick={submit} type="button" className="text-white w-full bg-gradient-to-r from-purple-400 via-purple-500 border to-purple-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-600 font-medium rounded-lg text-sm px-5 py-2.5">
           Start
         </button>

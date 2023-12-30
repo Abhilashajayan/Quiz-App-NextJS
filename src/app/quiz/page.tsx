@@ -4,34 +4,7 @@ import React, { useEffect, useState, FC } from "react";
 import axios from "axios";
 import SkeletonLoader from "./Skeltonloading";
 import { useSearchParams, useRouter } from 'next/navigation';
-
-
-interface Question {
-  id: string;
-  question: string;
-  questionId: string;
-  answer: string;
-  correctAnswer: string;
-  prevCorrectAns: string;
-  keyword:string;
-  answers: {
-    answer_a: string;
-    answer_b: string;
-    answer_c: string;
-    answer_d: string;
-    answer_e: string;
-    answer_f: string;
-  };
-  correct_answers: {
-    answer_a_correct: boolean;
-    answer_b_correct: boolean;
-    answer_c_correct: boolean;
-    answer_d_correct: boolean;
-    answer_e_correct: boolean;
-    answer_f_correct: boolean;
-  };
-}
-
+import { Question } from './Qustion';
 
 const Page = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -151,7 +124,7 @@ const Page = () => {
         <button
           onClick={handleSubmit}
           type="button"
-          className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-4"
+          className="text-gray-900 bg-gradient-to-r w-[300px] from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-4"
         >
           Submit
         </button>

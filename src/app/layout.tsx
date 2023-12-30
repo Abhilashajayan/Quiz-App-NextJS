@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Quiz-App',
@@ -16,6 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+      <link rel="icon" href="https://media.istockphoto.com/id/1312747110/photo/quiz.jpg?s=612x612&w=0&k=20&c=4_npPVIbviJHwpd42CTUNsdNymNbGtgsCTZW_c3zldc=" />
+      </head>
       <body >{children}</body>
     </html>
   )

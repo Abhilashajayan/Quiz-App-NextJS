@@ -6,6 +6,7 @@ import SkeletonLoader from "./Skeltonloading";
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Question } from './Qustion';
 
+
 const Page = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [selectedValues, setSelectedValues] = useState<{ [questionId: string]: string }>({});
@@ -74,6 +75,7 @@ const Page = () => {
 
       return count;
     }, 0);
+    
     router.push(`quiz/result?count=${correctCount}&keyword=${keyword}`);
     console.log(`Correct Answers: ${correctCount}`);
   };

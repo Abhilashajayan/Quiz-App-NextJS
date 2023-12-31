@@ -1,23 +1,22 @@
 "use client"
-
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'
-import { NextResponse } from 'next/server'
-import { NextRequest } from 'next/server';
-import clientCookies from "js-cookie";
+import Cookies from 'js-cookie';
+import { NextRequest  } from 'next/server';
+
 
 const Home: React.FC = () => {
   const [name, setName] = useState<string>('');
   const [error, setError] = useState<boolean>(false);
   const router = useRouter();
+
  
-  const submit = () => {
+  const submit:any = () => {
     if (name === undefined || name.trim() === '') {
-      const res = NextResponse.next()
-      clientCookies.set('name', name.trim());
       setError(true);
     } else {
       setError(false);
+      Cookies.set('name', name, { expires: 30 });
       const queryString = `?keyword=${name.trim()}`;  
       router.push(`/quiz${queryString}`);
     }

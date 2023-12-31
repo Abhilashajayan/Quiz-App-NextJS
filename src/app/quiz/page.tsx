@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState, FC } from "react";
-import axios from "axios";
+import client from "../axios/axiosConfiq";
 import SkeletonLoader from "./Skeltonloading";
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Question } from './Qustion';
@@ -16,13 +16,13 @@ const Page = () => {
   const searchParams = useSearchParams();
   const keyword = searchParams.get('keyword');
 
-
+ 
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get('https://quizapi.io/api/v1/questions', {
+        const response = await client.get('/questions', {
           params: {
-            apiKey: 'WQnUx8t0JuGPsaEja3g9qDFASaP1wAE9akzfbIIY',
+            apiKey: process.env.API_KEY,
             limit: 30,
           },
         });

@@ -2,15 +2,19 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'
-
+import { NextResponse } from 'next/server'
+import { NextRequest } from 'next/server';
+import clientCookies from "js-cookie";
 
 const Home: React.FC = () => {
   const [name, setName] = useState<string>('');
   const [error, setError] = useState<boolean>(false);
   const router = useRouter();
-
+ 
   const submit = () => {
     if (name === undefined || name.trim() === '') {
+      const res = NextResponse.next()
+      clientCookies.set('name', name.trim());
       setError(true);
     } else {
       setError(false);

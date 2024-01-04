@@ -1,4 +1,3 @@
-# service.yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -8,6 +7,6 @@ spec:
     app: quiz-app
   ports:
     - protocol: TCP
-      port: 3
-      targetPort: 3001
+      port: 80
+      targetPort: 3000
   type: LoadBalancer
